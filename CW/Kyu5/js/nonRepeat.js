@@ -19,7 +19,11 @@ function firstNonRepeatingLetter(s) {
 const i1 = 'a';
 const i2 = 'stress';
 const i3 = 'moonmen';
+const i4 = 'sTreSS';
+const i5 = 'abc';
 
-console.log(firstNonRepeatingLetter(i1));
-console.log(firstNonRepeatingLetter(i2));
-console.log(firstNonRepeatingLetter(i3));
+console.log(firstNonRepeatingLetter(i1)); //a
+console.log(firstNonRepeatingLetter(i2)); //t
+console.log(firstNonRepeatingLetter(i3)); //e
+console.log(firstNonRepeatingLetter(i4)); //T
+console.log(firstNonRepeatingLetter(i5)); //""

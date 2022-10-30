@@ -9,7 +9,6 @@ preserving the order of the other elements.
 function moveZeros(arr) {
   let count = 0;
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
     if (arr[i] === 0) {
       count++;
       arr.splice(i, 1);

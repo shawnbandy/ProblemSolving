@@ -9,14 +9,42 @@ Write a function cakes(), which takes the recipe (object) and the available ingr
 //?https://www.codewars.com/kata/525c65e51bf619685c000059/train/javascript
 
 function cakes(recipe, available) {
-  return integer;
+  let recipeList = Object.keys(recipe);
+  let availableList = Object.keys(available);
+
+  for (const ingredient of recipeList) {
+    let found = availableList.find((ing) => ing === ingredient);
+    if (!found) {
+      return 0;
+    }
+  }
+
+  let recipeAmount = Object.values(recipe);
+  let availableAmount = Object.values(available);
+  let limitingFactor = recipeAmount[0];
+  for (let i = 0; i < recipeAmount.length; i++) {
+    let currentAmount = availableAmount[i] / recipeAmount[i];
+    if (currentAmount < limitingFactor) {
+      limitingFactor = currentAmount;
+    }
+  }
+
+  return Math.floor(limitingFactor);
 }
 
 const r1 = { flour: 500, sugar: 200, eggs: 1 };
-const r2 = { apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 };
 const a1 = { flour: 1200, sugar: 1200, eggs: 5, milk: 200 };
+const r2 = { apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 };
 const a2 = { sugar: 500, flour: 2000, milk: 2000 };
+const r3 = { cream: 200, flour: 300, sugar: 150, milk: 100, oil: 100 };
+const a3 = { sugar: 1700, flour: 20000, milk: 20000, oil: 30000, cream: 5000 };
 
 // must return 2
 console.log(cakes(r1, a1));
 console.log(cakes(r2, a2));
+console.log(cakes(r3, a3)); //11
+
+//TODO get all the objects in an array from the two inputs
+//TODO compare the objects by recipe list, so if there isn't a recipe item on the available list, return 0
+//TODO get rid of the items not needed in avail?
+//TODO if it passes prev test, compare the item amounts by limiting factor
