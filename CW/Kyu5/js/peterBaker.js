@@ -4,32 +4,42 @@ Pete likes to bake some cakes. He has some recipes and ingredients. Unfortunatel
 Write a function cakes(), which takes the recipe (object) and the available ingredients (also an object) and returns the maximum number of cakes Pete can bake (integer). For simplicity there are no units for the amounts (e.g. 1 lb of flour or 200 g of sugar are simply 1 or 200). Ingredients that are not present in the objects, can be considered as 0.
 */
 
-//TODO
+// // TODO
 
 //?https://www.codewars.com/kata/525c65e51bf619685c000059/train/javascript
 
 function cakes(recipe, available) {
-  let recipeList = Object.keys(recipe);
-  let availableList = Object.keys(available);
+  let recipeList = [];
+  let availableList = [];
+  let valueArr = [];
 
-  for (const ingredient of recipeList) {
-    let found = availableList.find((ing) => ing === ingredient);
+  let recipeObj = Object.keys(recipe);
+  let availableObj = Object.keys(available);
+
+  for (const ingredient of recipeObj) {
+    let found = availableObj.find((ing) => ing === ingredient);
     if (!found) {
       return 0;
     }
   }
 
-  let recipeAmount = Object.values(recipe);
-  let availableAmount = Object.values(available);
-  let limitingFactor = recipeAmount[0];
-  for (let i = 0; i < recipeAmount.length; i++) {
-    let currentAmount = availableAmount[i] / recipeAmount[i];
-    if (currentAmount < limitingFactor) {
-      limitingFactor = currentAmount;
+  for (const [key, value] of Object.entries(recipe)) {
+    recipeList.push([key, value]);
+  }
+  for (const [key, value] of Object.entries(available)) {
+    availableList.push([key, value]);
+  }
+
+  for (let i = 0; i < recipeList.length; i++) {
+    for (let j = 0; j < availableList.length; j++) {
+      if (recipeList[i][0] == availableList[j][0]) {
+        let limitingFactor = Math.floor(availableList[j][1] / recipeList[i][1]);
+        valueArr.push(limitingFactor);
+      }
     }
   }
 
-  return Math.floor(limitingFactor);
+  return Math.min(...valueArr);
 }
 
 const r1 = { flour: 500, sugar: 200, eggs: 1 };
