@@ -11,12 +11,31 @@ Intervals are represented by a pair of integers in the form of an array. The fir
 
 function sumIntervals(intervals) {
   //TODO
-}
+  let answer = 0;
+  let arr = [];
 
-console.log(sumIntervals(i1));
-console.log(sumIntervals(i2));
-console.log(sumIntervals(i3));
-console.log(sumIntervals(i4));
+  const sortedInt = intervals.sort((a, b) => a[1] - b[1]);
+  for (const element of sortedInt) {
+    if (element[1] - element[0] == 1) {
+      answer++;
+    } else {
+      for (let i = element[0]; i < element[1]; i++) {
+        arr.push(i);
+      }
+    }
+  }
+
+  arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == arr[i + 1]) {
+      arr.splice(i, 1);
+    }
+  }
+
+  //console.log(arr.length + answer);
+  return arr.length + answer;
+}
 
 //9
 const i1 = [
@@ -47,3 +66,8 @@ const i4 = [
   [-100000000, 10],
   [30, 40],
 ];
+
+console.log(sumIntervals(i1));
+console.log(sumIntervals(i2));
+console.log(sumIntervals(i3));
+console.log(sumIntervals(i4)); //*fails here because it takes too long
