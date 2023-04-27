@@ -22,6 +22,8 @@ L	50
 C	100
 D	500
 M	1000
+
+https://www.codewars.com/kata/51b66044bce5799a7f000003/train/javascript
 */
 const test = [1, 2, 3, 4];
 const test1 = [1, 2, 3];
