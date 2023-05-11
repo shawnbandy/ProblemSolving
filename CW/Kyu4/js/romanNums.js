@@ -45,7 +45,12 @@ class RomanNumerals {
       let isSpecial = decideIfSpecial(numStrArr[index]);
       if (isSpecial == -1) {
         for (let i = 0; i < Number(numStrArr[index]); i++) {
-          answer += 'C';
+          if (Number(numStrArr[index]) >= 5) {
+            answer += 'D';
+            i = 5;
+          } else {
+            answer += 'C';
+          }
         }
       } else {
         answer += symbolVal[isSpecial];
